@@ -64,7 +64,7 @@ namespace Melon_Loader_Mod5
                 Extra(ElementGrid.transform, bonemenu: true);
             }
 
-            GameObject group_toolMenu = GameObject.Find("group_toolMenu"); //red //done 
+            GameObject group_toolMenu = GameObject.Find("group_toolMenu"); //red //done //image bakcline is kinda breokenn 
             if (group_toolMenu != null)
             {
                 SpawnGun(group_toolMenu.transform, isFourthChild: true);
@@ -94,11 +94,11 @@ namespace Melon_Loader_Mod5
 
             RadialMenuButtons();
 
-            string filepath = "[RigManager (Blank)]/[UIRig]/PLAYERUI/UI_POPUP/scaleOffset/CANVAS_RADIALUI/"; //doing this because for some reason it cant find "CANVAS_RADIALUI" but it does if I put the full path?
-
-            GameObject CANVAS_RADIALUI = GameObject.Find(filepath);
+            
+            GameObject CANVAS_RADIALUI = GameObject.Find("CANVAS_RADIALUI"); //green //done
             if (CANVAS_RADIALUI != null)
             {
+
                 RadialMenuTextImage(CANVAS_RADIALUI.transform);
             }
 
@@ -111,7 +111,7 @@ namespace Melon_Loader_Mod5
              }
              */
 
-            
+
         }
 
         private void LevelSelect(Transform parent, bool isSecondChild)
@@ -412,105 +412,103 @@ namespace Melon_Loader_Mod5
 
         private void RadialMenuTextImage(Transform parent)
         {
-            
-            if (parent != null)
+
+
+            for (int i = 0; i < parent.childCount; i++)
             {
+                Transform child = parent.GetChild(i);
 
-                for (int i = 0; i < parent.childCount; i++)
+
+
+
+                // Get the desired component from the child (if exists)
+                UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
+                TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
+
+
+                if (child.name == "text_Information")
                 {
-                    Transform child = parent.GetChild(i);
-
-                    
-
-
-                    // Get the desired component from the child (if exists)
-                    UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
-                    TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
+                    continue;
+                }
 
 
-                    if (child.name == "text_Information")
-                    {
-                        continue;
-                    }
+                if (imageComponent != null && (i == 0 || i == 1)) //done
+                {
+                    imageComponent.color = sky;
+                }
+                else if (textComponent != null && (i == 0 || i == 1))
+                {
+                    textComponent.color = sky;
+                }
 
-                    if (imageComponent != null || i == 0) //done
-                    {
-                        imageComponent.color = sky;
-                    }
-                    else if (textComponent != null || i == 1)
-                    {
-                        textComponent.color = sky;
-                    }
-
-                    else if (imageComponent != null || i == 4) //done
-                    {
-                        imageComponent.color = orange;
-                    }
-                    else if (textComponent != null || i == 3)
+                else if (imageComponent != null && (i == 3 || i == 4)) //done
+                {
+                    imageComponent.color = orange;
+                }
+                else if (textComponent != null && ( i == 3 || i == 4))
                     {
                         textComponent.color = orange;
                     }
 
-                    else if (imageComponent != null || i == 7) //done
+                    else if (imageComponent != null && (i == 6 || i == 7)) //done
                     {
                         imageComponent.color = yellow;
                     }
-                    else if (textComponent != null || i == 6)
+                    else if (textComponent != null && (i == 6 || i == 7))
                     {
                         textComponent.color = yellow;
                     }
 
-                    else if (imageComponent != null || i == 10) //done
+                    else if (imageComponent != null && (i == 9 || i == 10)) //done
                     {
                         imageComponent.color = blue;
                     }
-                    else if (textComponent != null || i == 9)
+                    else if (textComponent != null && (i == 9 || i == 10))
                     {
                         textComponent.color = blue;
                     }
 
-                    else if (imageComponent != null || i == 13) //done
+                    else if (imageComponent != null && (i == 12 || i == 13)) //done
                     {
                         imageComponent.color = magenta;
                     }
-                    else if (textComponent != null || i == 12)
+                    else if (textComponent != null && (i == 12 || i == 13))
                     {
                         textComponent.color = magenta;
                     }
 
-                    else if (imageComponent != null || i == 16) //done
+                    else if (imageComponent != null && (i == 15 || i == 16)) //done
                     {
                         imageComponent.color = purple;
                     }
-                    else if (textComponent != null || i == 15)
+                    else if (textComponent != null && (i == 15 || i == 16))
                     {
                         textComponent.color = purple;
                     }
 
-                    else if (imageComponent != null || i == 19) //done
+                    else if (imageComponent != null && (i == 18 || i == 19)) //done
                     {
                         imageComponent.color = red;
                     }
-                    else if (textComponent != null || i == 18)
+                    else if (textComponent != null && (i == 18 || i == 19))
                     {
                         textComponent.color = red;
                     }
 
-                    else if (imageComponent != null || i == 22) //done
+                    else if (imageComponent != null && (i == 21 || i == 22)) //done
                     {
                         imageComponent.color = green;
                     }
-                    else if (textComponent != null || i == 21)
+                    else if (textComponent != null && (i == 21 || i == 22))
                     {
                         textComponent.color = green;
-                    }
+                    } 
 
 
 
                     // Recursively call the method to modify components in nested children
                     RadialMenuTextImage(child);
                 }
-            }
         }
 
         private void RadialMenuButtons() //god I did this in a bad way might fix later in 1.1
