@@ -36,7 +36,15 @@ namespace Melon_Loader_Mod5
 
         // I should make all of these have a f but i truly dont care enough
 
-        public override void OnUpdate()
+        private void OnSceneAwake()
+        {
+            Moggingtime();
+        }
+        public override void OnInitializeMelon()
+        {
+            BoneLib.Hooking.OnLevelInitialized += (_) => { OnSceneAwake(); }; //Fusion is under MIT licencse so pretty sure as long as I credit it I'll be fine
+        }
+        public void Moggingtime()
         {
             //I realize I shouldve made these public methods and put them in other files now but whatever
             // I could 100% make all these way more compressed but i dont really care right now might fix after launch
@@ -44,12 +52,16 @@ namespace Melon_Loader_Mod5
             if (group_levelSelect != null)
             {
                 LevelSelect(group_levelSelect.transform, isSecondChild: true);
+                group_levelSelect.SetActive(true);
+                group_levelSelect.SetActive(false);
             }
 
             GameObject panel_Preferences = GameObject.Find("panel_Preferences"); //yellow //done
             if (panel_Preferences != null)
             {
                 Preferences(panel_Preferences.transform, isSecondChild: true);
+                panel_Preferences.SetActive(true);
+                panel_Preferences.SetActive(false);
             }
 
             GameObject grid_Graphics = GameObject.Find("grid_Graphics"); //yellow //done
@@ -64,25 +76,20 @@ namespace Melon_Loader_Mod5
                 Extra(ElementGrid.transform, bonemenu: true);
             }
 
-            GameObject group_toolMenu = GameObject.Find("group_toolMenu"); //red //done //image bakcline is kinda breokenn 
+            GameObject group_toolMenu = GameObject.Find("group_toolMenu"); //red //done  
             if (group_toolMenu != null)
             {
                 SpawnGun(group_toolMenu.transform, isFourthChild: true);
+                group_toolMenu.SetActive(true);
+                group_toolMenu.SetActive(false);
             }
-
-            // Dont know why it wont overide the white grid on the spawn gun but it doesnt matter that much if someone wants to make a PR to fix it feel free
-            // might be because of bodymall dont know dont care enough to test
-            /*GameObject image_backline = GameObject.Find("image_backline");
-            if (image_backline != null)
-            {
-                ExtraSpawn(image_backline.transform);  // dont know why SpawnGun() doesnt get image_backline but whatever thats what the extra class is for
-            }*/
 
             GameObject group_AvatarSelect = GameObject.Find("group_AvatarSelect"); //green //done
             if (group_AvatarSelect != null)
-            {     
-
+            {
                 Avatar(group_AvatarSelect.transform, isSecondChild: true);
+                group_AvatarSelect.SetActive(true);
+                group_AvatarSelect.SetActive(false);
             }
 
             GameObject BodyMallController = GameObject.Find("BodyMallController"); //green //done
@@ -98,7 +105,6 @@ namespace Melon_Loader_Mod5
             GameObject CANVAS_RADIALUI = GameObject.Find("CANVAS_RADIALUI"); //green //done
             if (CANVAS_RADIALUI != null)
             {
-
                 RadialMenuTextImage(CANVAS_RADIALUI.transform);
             }
 
@@ -201,6 +207,7 @@ namespace Melon_Loader_Mod5
                 }
                 // Recursively call the method to modify components in nested children
                 Preferences(child, isSecondChild: false);
+                
             }
         }
         private void Extra(Transform parent, bool bonemenu)
@@ -248,14 +255,14 @@ namespace Melon_Loader_Mod5
                 {
                     continue;
                 }
-                else if (child.name == "image_backline")
+                else if (child.name == "image_backline" && child.parent.gameObject.name == "group_selectedInfo")
                 {
                     continue;
                 }
-                
-
-                if (isFourthChild && i == 3)
+                else if (isFourthChild && i == 3)
+                { 
                     continue;
+                }
 
                 if (imageComponent != null)
                 {
