@@ -7,6 +7,11 @@ using BoneLib.BoneMenu;
 using System;
 using BoneLib.BoneMenu.Elements;
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using BoneLib;
+using SLZ.VRMK;
+
 namespace Melon_Loader_Mod5
 {
     public static class BuildInfo
@@ -132,7 +137,10 @@ namespace Melon_Loader_Mod5
                 , Color.white);
 
             var NorthButton = category.CreateCategory("Eject", North);
-            ColorfulMenuCreator(NorthButton, North);
+            ColorfulMenuCreator(NorthButton, North, (updatedColor) =>
+            {
+                North = updatedColor;
+            });
             var NorthEastButton = category.CreateCategory("Level Select", NorthEast);
             var EastButton = category.CreateCategory("Preferences", East);
             var SouthEastButton = category.CreateCategory("Quick Mute", SouthEast);
@@ -140,29 +148,45 @@ namespace Melon_Loader_Mod5
             var SouthWestButton = category.CreateCategory("Spawn Devtools", SouthWest);
             var WestButton = category.CreateCategory("SpawnGun Menu", West);
             var NorthWestButton = category.CreateCategory("Level Select", NorthWest);
+            
         }
 
-        public void ColorfulMenuCreator(MenuCategory category, Color currentColor)
+
+        public void ColorfulMenuCreator(MenuCategory category, Color currentColor, Action<Color> applyCallback)
         {
-            var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.05f, 0f, 1f, (r) => 
+            float red = currentColor.r;
+            float green = currentColor.g;
+            float blue = currentColor.b;
+            float alpha = currentColor.a;
+            var colorPreview = category.CreateFunctionElement("■■■■■■■■■■■", currentColor, null);
+            var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.1f, 0f, 1f, (r) => 
             {
                 currentColor.r = r;
-                
+                colorPreview.SetColor(currentColor);
             });
-            var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.05f, 0f, 1f, (g) => 
+            var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.1f, 0f, 1f, (g) => 
             {
                 currentColor.g = g;
+                colorPreview.SetColor(currentColor);
             });
-            var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.05f, 0f, 1f, (b) => 
+            var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.1f, 0f, 1f, (b) => 
             {
                 currentColor.b = b;
+                colorPreview.SetColor(currentColor);
             });
-            var colorA = category.CreateFloatElement("Alpha", Color.black, currentColor.a, 0.05f, 0f, 1f, (a) => {
+            var colorA = category.CreateFloatElement("Alpha", Color.black, currentColor.a, 0.1f, 0f, 1f, (a) => {
                 currentColor.a = a;
+                colorPreview.SetColor(currentColor);
             });
-            var colorPreview = category.CreateFunctionElement("■■■■■■■■■■■", currentColor, null);
+            category.CreateFunctionElement("Apply", Color.white, delegate ()
+            {
+                applyCallback(currentColor);
+                Moggingtime();
+                
+            });
 
-            colorPreview.SetColor(currentColor);
+
+
 
         }
 
@@ -171,7 +195,7 @@ namespace Melon_Loader_Mod5
         {
             //I realize I shouldve made these public methods and put them in other files now but whatever
             // I could 100% make all these way more compressed but i dont really care right now might fix after launch
-            GameObject[] objectsWithKeyword = GameObject.FindObjectsOfType<GameObject>();
+            var objectsWithKeyword = GameObject.FindObjectsOfType<GameObject>(true);
             foreach (GameObject obj in objectsWithKeyword)
             {
                 if (obj.name.Contains("group_levelSelect"))
@@ -206,8 +230,8 @@ namespace Melon_Loader_Mod5
                 {
                     RadialMenuTextImage(obj.transform);
                 }
-                RadialMenuButtons();
             }
+            RadialMenuButtons();
         }
 
         private void LevelSelect(Transform parent, bool isSecondChild)
@@ -608,7 +632,7 @@ namespace Melon_Loader_Mod5
                 }
         }
 
-        private void RadialMenuButtons() //god I did this in a bad way might fix later in 1.1
+        private void RadialMenuButtons() 
         {
             
 
@@ -618,7 +642,7 @@ namespace Melon_Loader_Mod5
                 SLZ.UI.PageItemView itemView = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
                 if (itemView != null)
                 {
-                    // Change the desiWest property value for the child object
+                    
                     itemView.color2 = North;
                 }
             }

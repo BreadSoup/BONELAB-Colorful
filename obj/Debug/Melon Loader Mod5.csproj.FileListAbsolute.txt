@@ -303,3 +303,5 @@ C:\Users\dcros\source\repos\Melon Loader Mod5\Melon Loader Mod5\BONELAB-Colorful
 C:\Users\dcros\source\repos\Melon Loader Mod5\Melon Loader Mod5\BONELAB-Colorful\obj\Debug\Melon Loader Mod5.pdb
 C:\Users\dcros\source\repos\Melon Loader Mod5\Melon Loader Mod5\BONELAB-Colorful\bin\Debug\BoneLib.dll
 C:\Users\dcros\source\repos\Melon Loader Mod5\Melon Loader Mod5\BONELAB-Colorful\bin\Debug\Newtonsoft.Json.dll
+C:\Users\dcros\Documents\GitHub\BONELAB-Colorful\bin\Debug\BoneLib.dll
+C:\Users\dcros\Documents\GitHub\BONELAB-Colorful\bin\Debug\Newtonsoft.Json.dll
