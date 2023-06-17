@@ -5,6 +5,7 @@ using TMPro;
 using System.IO;
 using BoneLib.BoneMenu;
 using System;
+using BoneLib.BoneMenu.Elements;
 
 namespace Melon_Loader_Mod5
 {
@@ -19,24 +20,80 @@ namespace Melon_Loader_Mod5
 
     public class Melon_Loader_Mod5 : MelonMod
     {
-        Color North = new Color(0, 1, 1, 1); //eject
+        /*static float N1 = 0f;
+        static float N2 = 1f;
+        static float N3 = 1f;
+        static float N4 = 1f;
 
-        Color NorthEast = new Color(1, 0.5f, 0, 1); //level
+        static float NE1 = 1f;
+        static float NE2 = 0.5f;
+        static float NE3 = 0f;
+        static float NE4 = 1f;
 
-        Color East = new Color(1, 1, 0, 1); //prefrances
+        static float E1 = 1f;
+        static float E2 = 1f;
+        static float E3 = 0f;
+        static float E4 = 1f;
 
-        Color SouthEast = new Color(0, 0, 1, 1); //quick unmute
+        static float SE1 = 0f;
+        static float SE2 = 0f;
+        static float SE3 = 1f;
+        static float SE4 = 1f;
 
-        Color South = new Color(1, 0, 1, 1); //inventory
+        static float S1 = 1f;
+        static float S2 = 0f;
+        static float S3 = 1f;
+        static float S4 = 1f;
 
-        Color SouthWest = new Color(0.5f, 0, 1, 1); //devtools
+        static float SW1 = 0.5f;
+        static float SW2 = 0f;
+        static float SW3 = 1f;
+        static float SW4 = 1f;
 
-        Color West = new Color(1, 0, 0, 1); //spawngun 
+        static float W1 = 1f;
+        static float W2 = 0f;
+        static float W3 = 0f;
+        static float W4 = 1f;
 
-        Color NorthWest = new Color(0, 1, 0, 1); //avatar
+        static float NW1 = 0f;
+        static float NW2 = 1f;
+        static float NW3 = 0f;
+        static float NW4 = 1f;
+
+        Color North = new Color(N1, N2, N3, N4); //eject
+
+        Color NorthEast = new Color(NE1, NE2, NE3, NE4); //level
+
+        Color East = new Color(E1, E2, E3, E4); //prefrances
+
+        Color SouthEast = new Color(SE1, SE2, SE3, SE4); //quick unmute
+
+        Color South = new Color(S1, S2, S3, S4); //inventory
+
+        Color SouthWest = new Color(SW1, SW2, SW3, SW4); //devtools
+
+        Color West = new Color(W1, W2, W3, W4); //spawngun 
+
+        Color NorthWest = new Color(NW1, NW2, NW3, NW4); //avatar */
+
+        Color North = new Color(0f, 1f, 1f, 1f); //eject
+
+        Color NorthEast = new Color(1f, 0.5f, 0f, 1f); //level
+
+        Color East = new Color(1f, 1f, 0f, 1f); //prefrances
+
+        Color SouthEast = new Color(0f, 0f, 1f, 1f); //quick unmute
+
+        Color South = new Color(1f, 0f, 1f, 1f); //inventory
+
+        Color SouthWest = new Color(0.5f, 0f, 1f, 1f); //devtools
+
+        Color West = new Color(1f, 0f, 0f, 1f); //spawngun 
+
+        Color NorthWest = new Color(0f, 1f, 0f, 1f); //avatar
 
 
-        // I should make all of these have a f but i truly dont care enough
+
 
         private void OnSceneAwake()
         {
@@ -63,7 +120,7 @@ namespace Melon_Loader_Mod5
             string WestHexcode = ColorUtility.ToHtmlStringRGBA(West);
             string NorthWestHexcode = ColorUtility.ToHtmlStringRGBA(NorthWest);
 
-            var category = MenuManager.CreateCategory( 
+            var category = MenuManager.CreateCategory( //im not typing all this out again so its a var now!!!!!!
                 "<color=#" + NorthHexcode + ">" + "C" + "</color>" +
                 "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
                 "<color=#" + EastHexcode + ">" + "l" + "</color>" +
@@ -73,7 +130,43 @@ namespace Melon_Loader_Mod5
                 "<color=#" + WestHexcode + ">" + "u" + "</color>" +
                 "<color=#" + NorthWestHexcode + ">" + "l" + "</color>"
                 , Color.white);
+
+            var NorthButton = category.CreateCategory("Eject", North);
+            ColorfulMenuCreator(NorthButton, North);
+            var NorthEastButton = category.CreateCategory("Level Select", NorthEast);
+            var EastButton = category.CreateCategory("Preferences", East);
+            var SouthEastButton = category.CreateCategory("Quick Mute", SouthEast);
+            var SouthButton = category.CreateCategory("Inventory", South);
+            var SouthWestButton = category.CreateCategory("Spawn Devtools", SouthWest);
+            var WestButton = category.CreateCategory("SpawnGun Menu", West);
+            var NorthWestButton = category.CreateCategory("Level Select", NorthWest);
         }
+
+        public void ColorfulMenuCreator(MenuCategory category, Color currentColor)
+        {
+            var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.05f, 0f, 1f, (r) => 
+            {
+                currentColor.r = r;
+                
+            });
+            var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.05f, 0f, 1f, (g) => 
+            {
+                currentColor.g = g;
+            });
+            var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.05f, 0f, 1f, (b) => 
+            {
+                currentColor.b = b;
+            });
+            var colorA = category.CreateFloatElement("Alpha", Color.black, currentColor.a, 0.05f, 0f, 1f, (a) => {
+                currentColor.a = a;
+            });
+            var colorPreview = category.CreateFunctionElement("■■■■■■■■■■■", currentColor, null);
+
+            colorPreview.SetColor(currentColor);
+
+        }
+
+        
         public void Moggingtime()
         {
             //I realize I shouldve made these public methods and put them in other files now but whatever
