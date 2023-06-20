@@ -111,7 +111,7 @@ namespace Melon_Loader_Mod5
             //MelonPreferencesCreator();
         }
 
-        
+
 
         public void BonemenuCreator()
         {
@@ -129,8 +129,8 @@ namespace Melon_Loader_Mod5
                 "<color=#" + NorthHexcode + ">" + "C" + "</color>" +
                 "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
                 "<color=#" + EastHexcode + ">" + "l" + "</color>" +
-                "<color=#" + SouthEastHexcode + ">"+ "o" + "</color>" +
-                "<color=#" + SouthHexcode + ">"+ "r" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
                 "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
                 "<color=#" + WestHexcode + ">" + "u" + "</color>" +
                 "<color=#" + NorthWestHexcode + ">" + "l" + "</color>"
@@ -148,7 +148,7 @@ namespace Melon_Loader_Mod5
             var SouthWestButton = category.CreateCategory("Spawn Devtools", SouthWest);
             var WestButton = category.CreateCategory("SpawnGun Menu", West);
             var NorthWestButton = category.CreateCategory("Level Select", NorthWest);
-            
+
         }
 
 
@@ -159,17 +159,17 @@ namespace Melon_Loader_Mod5
             float blue = currentColor.b;
             float alpha = currentColor.a;
             var colorPreview = category.CreateFunctionElement("■■■■■■■■■■■", currentColor, null);
-            var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.1f, 0f, 1f, (r) => 
+            var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.1f, 0f, 1f, (r) =>
             {
                 currentColor.r = r;
                 colorPreview.SetColor(currentColor);
             });
-            var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.1f, 0f, 1f, (g) => 
+            var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.1f, 0f, 1f, (g) =>
             {
                 currentColor.g = g;
                 colorPreview.SetColor(currentColor);
             });
-            var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.1f, 0f, 1f, (b) => 
+            var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.1f, 0f, 1f, (b) =>
             {
                 currentColor.b = b;
                 colorPreview.SetColor(currentColor);
@@ -182,7 +182,7 @@ namespace Melon_Loader_Mod5
             {
                 applyCallback(currentColor);
                 Moggingtime();
-                
+
             });
 
 
@@ -190,7 +190,7 @@ namespace Melon_Loader_Mod5
 
         }
 
-        
+
         public void Moggingtime()
         {
             //I realize I shouldve made these public methods and put them in other files now but whatever
@@ -236,7 +236,7 @@ namespace Melon_Loader_Mod5
 
         private void LevelSelect(Transform parent, bool isSecondChild)
         {
-            
+
             // Iterate through each child object of the parent
             for (int i = 0; i < parent.childCount; i++)
             {
@@ -267,7 +267,7 @@ namespace Melon_Loader_Mod5
         }
         private void Preferences(Transform parent, bool isSecondChild)
         {
-            
+
 
             // Iterate through each child object of the parent
             for (int i = 0; i < parent.childCount; i++)
@@ -321,7 +321,7 @@ namespace Melon_Loader_Mod5
                 }
                 // Recursively call the method to modify components in nested children
                 Preferences(child, isSecondChild: false);
-                
+
             }
         }
         private void Extra(Transform parent, bool bonemenu)
@@ -374,7 +374,7 @@ namespace Melon_Loader_Mod5
                     continue;
                 }
                 else if (isFourthChild && i == 3)
-                { 
+                {
                     continue;
                 }
 
@@ -412,7 +412,7 @@ namespace Melon_Loader_Mod5
                     continue;
                 }
 
-                    UnityEngine.UI.Image imageComponent = parent.GetComponent<UnityEngine.UI.Image>();
+                UnityEngine.UI.Image imageComponent = parent.GetComponent<UnityEngine.UI.Image>();
                 TextMeshProUGUI textComponent = parent.GetComponent<TextMeshProUGUI>();
 
                 if (imageComponent != null)
@@ -430,10 +430,10 @@ namespace Melon_Loader_Mod5
             }
         }
 
-        private void Avatar(Transform parent, bool isSecondChild) 
+        private void Avatar(Transform parent, bool isSecondChild)
         {
 
-            
+
 
 
             // Iterate through each child object of the parent
@@ -458,7 +458,7 @@ namespace Melon_Loader_Mod5
                 {
                     continue;
                 }
-                
+
 
                 if (imageComponent != null)
                 {
@@ -480,7 +480,7 @@ namespace Melon_Loader_Mod5
             }
         }
 
-        private void Bodymall(Transform parent) 
+        private void Bodymall(Transform parent)
         {
 
             //"mat_spiderChart (Instance)" material.color is for the spidercahrt on bodymall
@@ -490,7 +490,7 @@ namespace Melon_Loader_Mod5
             {
                 Transform child = parent.GetChild(i);
 
-                
+
 
                 // Get the desiWest component from the child (if exists)
                 UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
@@ -566,158 +566,167 @@ namespace Melon_Loader_Mod5
                 {
                     imageComponent.color = NorthEast;
                 }
-                else if (textComponent != null && ( i == 3 || i == 4))
-                    {
-                        textComponent.color = NorthEast;
-                    }
-
-                    else if (imageComponent != null && (i == 6 || i == 7)) //done
-                    {
-                        imageComponent.color = East;
-                    }
-                    else if (textComponent != null && (i == 6 || i == 7))
-                    {
-                        textComponent.color = East;
-                    }
-
-                    else if (imageComponent != null && (i == 9 || i == 10)) //done
-                    {
-                        imageComponent.color = SouthEast;
-                    }
-                    else if (textComponent != null && (i == 9 || i == 10))
-                    {
-                        textComponent.color = SouthEast;
-                    }
-
-                    else if (imageComponent != null && (i == 12 || i == 13)) //done
-                    {
-                        imageComponent.color = South;
-                    }
-                    else if (textComponent != null && (i == 12 || i == 13))
-                    {
-                        textComponent.color = South;
-                    }
-
-                    else if (imageComponent != null && (i == 15 || i == 16)) //done
-                    {
-                        imageComponent.color = SouthWest;
-                    }
-                    else if (textComponent != null && (i == 15 || i == 16))
-                    {
-                        textComponent.color = SouthWest;
-                    }
-
-                    else if (imageComponent != null && (i == 18 || i == 19)) //done
-                    {
-                        imageComponent.color = West;
-                    }
-                    else if (textComponent != null && (i == 18 || i == 19))
-                    {
-                        textComponent.color = West;
-                    }
-
-                    else if (imageComponent != null && (i == 21 || i == 22)) //done
-                    {
-                        imageComponent.color = NorthWest;
-                    }
-                    else if (textComponent != null && (i == 21 || i == 22))
-                    {
-                        textComponent.color = NorthWest;
-                    } 
-
-
-
-                    // Recursively call the method to modify components in nested children
-                    RadialMenuTextImage(child);
+                else if (textComponent != null && (i == 3 || i == 4))
+                {
+                    textComponent.color = NorthEast;
                 }
+
+                else if (imageComponent != null && (i == 6 || i == 7)) //done
+                {
+                    imageComponent.color = East;
+                }
+                else if (textComponent != null && (i == 6 || i == 7))
+                {
+                    textComponent.color = East;
+                }
+
+                else if (imageComponent != null && (i == 9 || i == 10)) //done
+                {
+                    imageComponent.color = SouthEast;
+                }
+                else if (textComponent != null && (i == 9 || i == 10))
+                {
+                    textComponent.color = SouthEast;
+                }
+
+                else if (imageComponent != null && (i == 12 || i == 13)) //done
+                {
+                    imageComponent.color = South;
+                }
+                else if (textComponent != null && (i == 12 || i == 13))
+                {
+                    textComponent.color = South;
+                }
+
+                else if (imageComponent != null && (i == 15 || i == 16)) //done
+                {
+                    imageComponent.color = SouthWest;
+                }
+                else if (textComponent != null && (i == 15 || i == 16))
+                {
+                    textComponent.color = SouthWest;
+                }
+
+                else if (imageComponent != null && (i == 18 || i == 19)) //done
+                {
+                    imageComponent.color = West;
+                }
+                else if (textComponent != null && (i == 18 || i == 19))
+                {
+                    textComponent.color = West;
+                }
+
+                else if (imageComponent != null && (i == 21 || i == 22)) //done
+                {
+                    imageComponent.color = NorthWest;
+                }
+                else if (textComponent != null && (i == 21 || i == 22))
+                {
+                    textComponent.color = NorthWest;
+                }
+
+
+
+                // Recursively call the method to modify components in nested children
+                RadialMenuTextImage(child);
+            }
         }
 
-        private void RadialMenuButtons() 
+        SLZ.UI.PageItemView N;
+        SLZ.UI.PageItemView NE;
+        SLZ.UI.PageItemView E;
+        SLZ.UI.PageItemView SE;
+        SLZ.UI.PageItemView S;
+        SLZ.UI.PageItemView SW;
+        SLZ.UI.PageItemView W;
+        SLZ.UI.PageItemView NW;
+        private void RadialMenuButtons()
         {
-            
 
-            GameObject button_Region_N = GameObject.Find("button_Region_N"); //eject
-            if (button_Region_N != null)
-            {
-                SLZ.UI.PageItemView itemView = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
+
+           
+           
+                
+                if (N == null)
                 {
-                    
-                    itemView.color2 = North;
+                    GameObject button_Region_N = GameObject.Find("button_Region_N"); //eject
+                    N = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
                 }
-            }
-            GameObject button_Region_NE = GameObject.Find("button_Region_NE"); //level selecct
-            if (button_Region_NE != null)
-            {
-                SLZ.UI.PageItemView itemView = button_Region_NE.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
+                if (N != null)
                 {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = NorthEast;
+                    N.color2 = North;
                 }
-            }
-            GameObject button_Region_E = GameObject.Find("button_Region_E"); //pref
-            if (button_Region_E != null)
+
+            if (NE == null)
             {
-                SLZ.UI.PageItemView itemView = button_Region_E.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
-                {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = East;
-                }
+                GameObject button_Region_N = GameObject.Find("button_Region_NE"); //Level
+                NE = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            GameObject button_Region_SE = GameObject.Find("button_Region_SE"); //quick unmute
-            if (button_Region_SE != null)
+            if (NE != null)
             {
-                SLZ.UI.PageItemView itemView = button_Region_SE.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
-                {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = SouthEast;
-                }
+                NE.color2 = NorthEast;
             }
-            GameObject button_Region_S = GameObject.Find("button_Region_S"); //inv
-            if (button_Region_S != null)
+
+            if (E == null)
             {
-                SLZ.UI.PageItemView itemView = button_Region_S.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
-                {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = South;
-                }
+                GameObject button_Region_N = GameObject.Find("button_Region_E"); //Pref
+                E = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            GameObject button_Region_SW = GameObject.Find("button_Region_SW"); //dev tools
-            if (button_Region_SW != null)
+            if (E != null)
             {
-                SLZ.UI.PageItemView itemView = button_Region_SW.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
-                {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = SouthWest;
-                }
+                E.color2 = East;
             }
-            GameObject button_Region_W = GameObject.Find("button_Region_W"); //spawn menu
-            if (button_Region_W != null)
+
+            if (SE == null)
             {
-                SLZ.UI.PageItemView itemView = button_Region_W.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
-                {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = West;
-                }
+                GameObject button_Region_N = GameObject.Find("button_Region_SE"); //Quick Unmute
+                SE = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            GameObject button_Region_NW = GameObject.Find("button_Region_NW"); //avatar
-            if (button_Region_NW != null)
+            if (SE != null)
             {
-                SLZ.UI.PageItemView itemView = button_Region_NW.GetComponent<SLZ.UI.PageItemView>();
-                if (itemView != null)
-                {
-                    // Change the desiWest property value for the child object
-                    itemView.color2 = NorthWest;
-                }
+                SE.color2 = SouthEast;
             }
-            
- 
+
+            if (S == null)
+            {
+                GameObject button_Region_N = GameObject.Find("button_Region_S"); //inv
+                S = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+            }
+            if (S != null)
+            {
+                S.color2 = South;
+            }
+
+            if (SW == null)
+            {
+                GameObject button_Region_N = GameObject.Find("button_Region_SW"); //inv
+                SW = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+            }
+            if (SW != null)
+            {
+                SW.color2 = SouthWest;
+            }
+
+            if (W == null)
+            {
+                GameObject button_Region_N = GameObject.Find("button_Region_W"); //inv
+                W = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+            }
+            if (W != null)
+            {
+                W.color2 = West;
+            }
+
+            if (NW == null)
+            {
+                GameObject button_Region_N = GameObject.Find("button_Region_NW"); //inv
+                NW = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+            }
+            if (NW != null)
+            {
+                NW.color2 = NorthWest;
+            }
+
         }
 
     }
