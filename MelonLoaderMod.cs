@@ -11,13 +11,16 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using BoneLib;
 using SLZ.VRMK;
+using System.Security.Policy;
+using System.Collections.Generic;
+
 
 namespace Melon_Loader_Mod5
 {
     public static class BuildInfo
     {
-        public const string Name = "Melon_Loader_Mod5";
-        public const string Author = null;
+        public const string Name = "Colorful";
+        public const string Author = "Bread Soup";
         public const string Company = null;
         public const string Version = "1.0.0";
         public const string DownloadLink = null;
@@ -25,63 +28,9 @@ namespace Melon_Loader_Mod5
 
     public class Melon_Loader_Mod5 : MelonMod
     {
-        /*static float N1 = 0f;
-        static float N2 = 1f;
-        static float N3 = 1f;
-        static float N4 = 1f;
 
-        static float NE1 = 1f;
-        static float NE2 = 0.5f;
-        static float NE3 = 0f;
-        static float NE4 = 1f;
 
-        static float E1 = 1f;
-        static float E2 = 1f;
-        static float E3 = 0f;
-        static float E4 = 1f;
-
-        static float SE1 = 0f;
-        static float SE2 = 0f;
-        static float SE3 = 1f;
-        static float SE4 = 1f;
-
-        static float S1 = 1f;
-        static float S2 = 0f;
-        static float S3 = 1f;
-        static float S4 = 1f;
-
-        static float SW1 = 0.5f;
-        static float SW2 = 0f;
-        static float SW3 = 1f;
-        static float SW4 = 1f;
-
-        static float W1 = 1f;
-        static float W2 = 0f;
-        static float W3 = 0f;
-        static float W4 = 1f;
-
-        static float NW1 = 0f;
-        static float NW2 = 1f;
-        static float NW3 = 0f;
-        static float NW4 = 1f;
-
-        Color North = new Color(N1, N2, N3, N4); //eject
-
-        Color NorthEast = new Color(NE1, NE2, NE3, NE4); //level
-
-        Color East = new Color(E1, E2, E3, E4); //prefrances
-
-        Color SouthEast = new Color(SE1, SE2, SE3, SE4); //quick unmute
-
-        Color South = new Color(S1, S2, S3, S4); //inventory
-
-        Color SouthWest = new Color(SW1, SW2, SW3, SW4); //devtools
-
-        Color West = new Color(W1, W2, W3, W4); //spawngun 
-
-        Color NorthWest = new Color(NW1, NW2, NW3, NW4); //avatar */
-
-        Color North = new Color(0f, 1f, 1f, 1f); //eject
+        Color North = new Color(0f, 1f, 1f, 1f);
 
         Color NorthEast = new Color(1f, 0.5f, 0f, 1f); //level
 
@@ -97,25 +46,138 @@ namespace Melon_Loader_Mod5
 
         Color NorthWest = new Color(0f, 1f, 0f, 1f); //avatar
 
+        //defults 
+        Color NorthDefult = new Color(0f, 1f, 1f, 1f); //eject
 
+        Color NorthEastDefult = new Color(1f, 0.5f, 0f, 1f); //level
 
+        Color EastDefult = new Color(1f, 1f, 0f, 1f); //prefrances
+
+        Color SouthEastDefult = new Color(0f, 0f, 1f, 1f); //quick unmute
+
+        Color SouthDefult = new Color(1f, 0f, 1f, 1f); //inventory
+
+        Color SouthWestDefult = new Color(0.5f, 0f, 1f, 1f); //devtools
+
+        Color WestDefult = new Color(1f, 0f, 0f, 1f); //spawngun 
+
+        Color NorthWestDefult = new Color(0f, 1f, 0f, 1f); //avatar
 
         private void OnSceneAwake()
         {
-            Moggingtime();
+            if (IsEnabled)
+            {
+                MoggingTime();
+            }
+            RadialMenuButtons();
         }
         public override void OnInitializeMelon()
         {
             BoneLib.Hooking.OnLevelInitialized += (_) => { OnSceneAwake(); }; //Fusion is under MIT licencse so pretty sure as long as I cWestit it I'll be fine
+
+            MelonPreferencesCreator();
             BonemenuCreator();
-            //MelonPreferencesCreator();
+            
+           
+        }
+        
+        public void ColorAssignment()
+        {
+            if (NorthPref.Value != null)
+            {
+                North = NorthPref.Value;
+            }
+            else
+            {
+                North = NorthDefult;
+            }
+
+            if (NorthEastPref.Value != null)
+            {
+                NorthEast = NorthEastPref.Value;
+            }
+            else
+            {
+                NorthEast = NorthEastDefult;
+            }
+
+            if (EastPref.Value != null)
+            {
+                East = EastPref.Value;
+            }
+            else
+            {
+                East = EastDefult;
+            }
+
+            if (SouthEastPref.Value != null)
+            {
+                SouthEast = SouthEastPref.Value;
+            }
+            else
+            {
+                SouthEast = SouthEastDefult;
+            }
+
+            if (SouthPref.Value != null)
+            {
+                South = SouthPref.Value;
+            }
+            else
+            {
+                South = SouthDefult;
+            }
+
+            if (SouthWestPref.Value != null)
+            {
+                SouthWest = SouthWestPref.Value;
+            }
+            else
+            {
+                SouthWest = SouthWestDefult;
+            }
+
+            if (WestPref.Value != null)
+            {
+                West = WestPref.Value;
+            }
+            else
+            {
+                West = WestDefult;
+            }
+
+            if (NorthWestPref.Value != null)
+            {
+                NorthWest = NorthWestPref.Value;
+            }
+            else
+            {
+                NorthWest = NorthWestDefult;
+            }
+
         }
 
+        public void MelonPreferencesCreator() 
+        {
+            MelonPrefCategory = MelonPreferences.CreateCategory("Colorful");
+            MelonPrefEnabled = MelonPrefCategory.CreateEntry<bool>("IsEnabled", true, null, null, false, false, null, null);
+            IsEnabled = MelonPrefEnabled.Value;
+            NorthPref = MelonPrefCategory.CreateEntry<Color>("Eject Color", NorthDefult, null, null, false);
+            NorthEastPref = MelonPrefCategory.CreateEntry<Color>("Level Select Color", NorthEastDefult, null, null, false);
+            EastPref = MelonPrefCategory.CreateEntry<Color>("Preferences Color", EastDefult, null, null, false);
+            SouthEastPref = MelonPrefCategory.CreateEntry<Color>("Quick Mute Color", SouthEastDefult, null, null, false);
+            SouthPref = MelonPrefCategory.CreateEntry<Color>("Inventory Color", SouthDefult, null, null, false);
+            SouthWestPref = MelonPrefCategory.CreateEntry<Color>("Spawn Devtools Color", SouthWestDefult, null, null, false);
+            WestPref = MelonPrefCategory.CreateEntry<Color>("SpawnGun Menu Color", WestDefult, null, null, false);
+            NorthWestPref = MelonPrefCategory.CreateEntry<Color>("Avatar Select Color", NorthWestDefult, null, null, false);
+        }
 
+        
 
         public void BonemenuCreator()
         {
-            //this is so ugly but whatever it works
+
+
             string NorthHexcode = ColorUtility.ToHtmlStringRGBA(North);
             string NorthEastHexcode = ColorUtility.ToHtmlStringRGBA(NorthEast);
             string EastHexcode = ColorUtility.ToHtmlStringRGBA(East);
@@ -125,7 +187,7 @@ namespace Melon_Loader_Mod5
             string WestHexcode = ColorUtility.ToHtmlStringRGBA(West);
             string NorthWestHexcode = ColorUtility.ToHtmlStringRGBA(NorthWest);
 
-            var category = MenuManager.CreateCategory( //im not typing all this out again so its a var now!!!!!!
+            string SuperLongName =
                 "<color=#" + NorthHexcode + ">" + "C" + "</color>" +
                 "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
                 "<color=#" + EastHexcode + ">" + "l" + "</color>" +
@@ -133,24 +195,153 @@ namespace Melon_Loader_Mod5
                 "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
                 "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
                 "<color=#" + WestHexcode + ">" + "u" + "</color>" +
-                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>"
-                , Color.white);
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>";
 
+            var category = MenuManager.CreateCategory(SuperLongName, Color.white);
+            
+            category.CreateBoolElement("Mod Toggle", Color.yellow, IsEnabled, new Action<bool>(OnSetEnabled));
+            //if I could shorten these I would but I can't 
             var NorthButton = category.CreateCategory("Eject", North);
             ColorfulMenuCreator(NorthButton, North, (updatedColor) =>
             {
                 North = updatedColor;
+                NorthButton.SetColor(updatedColor);
+                NorthHexcode = ColorUtility.ToHtmlStringRGBA(updatedColor);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                NorthPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+
+
             });
             var NorthEastButton = category.CreateCategory("Level Select", NorthEast);
+            ColorfulMenuCreator(NorthEastButton, NorthEast, (updatedColor) =>
+            {
+                NorthEast = updatedColor;
+                NorthEastButton.SetColor(updatedColor);
+                NorthEastHexcode = ColorUtility.ToHtmlStringRGBA(NorthEast);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                NorthEastPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
             var EastButton = category.CreateCategory("Preferences", East);
+            ColorfulMenuCreator(EastButton, East, (updatedColor) =>
+            {
+                East = updatedColor;
+                EastButton.SetColor(updatedColor);
+                EastHexcode = ColorUtility.ToHtmlStringRGBA(East);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                EastPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
             var SouthEastButton = category.CreateCategory("Quick Mute", SouthEast);
+            ColorfulMenuCreator(SouthEastButton, SouthEast, (updatedColor) =>
+            {
+                SouthEast = updatedColor;
+                SouthEastButton.SetColor(updatedColor);
+                SouthEastHexcode = ColorUtility.ToHtmlStringRGBA(SouthEast);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                SouthEastPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
             var SouthButton = category.CreateCategory("Inventory", South);
+            ColorfulMenuCreator(SouthButton, South, (updatedColor) =>
+            {
+                South = updatedColor;
+                SouthButton.SetColor(updatedColor);
+                SouthEastHexcode = ColorUtility.ToHtmlStringRGBA(South);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                SouthPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
             var SouthWestButton = category.CreateCategory("Spawn Devtools", SouthWest);
+            ColorfulMenuCreator(SouthWestButton, SouthWest, (updatedColor) =>
+            {
+                SouthWest = updatedColor;
+                SouthWestButton.SetColor(updatedColor);
+                SouthEastHexcode = ColorUtility.ToHtmlStringRGBA(SouthWest);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                SouthWestPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
             var WestButton = category.CreateCategory("SpawnGun Menu", West);
-            var NorthWestButton = category.CreateCategory("Level Select", NorthWest);
-
+            ColorfulMenuCreator(WestButton, West, (updatedColor) =>
+            {
+                West = updatedColor;
+                WestButton.SetColor(updatedColor);
+                SouthEastHexcode = ColorUtility.ToHtmlStringRGBA(West);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                WestPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
+            var NorthWestButton = category.CreateCategory("Avatar Select", NorthWest);
+            ColorfulMenuCreator(NorthWestButton, NorthWest, (updatedColor) =>
+            {
+                NorthWest = updatedColor;
+                NorthWestButton.SetColor(updatedColor);
+                SouthEastHexcode = ColorUtility.ToHtmlStringRGBA(NorthWest);
+                category.SetName("<color=#" + NorthHexcode + ">" + "C" + "</color>" +
+                "<color=#" + NorthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + EastHexcode + ">" + "l" + "</color>" +
+                "<color=#" + SouthEastHexcode + ">" + "o" + "</color>" +
+                "<color=#" + SouthHexcode + ">" + "r" + "</color>" +
+                "<color=#" + SouthWestHexcode + ">" + "f" + "</color>" +
+                "<color=#" + WestHexcode + ">" + "u" + "</color>" +
+                "<color=#" + NorthWestHexcode + ">" + "l" + "</color>");
+                NorthWestPref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
         }
 
+        
 
         public void ColorfulMenuCreator(MenuCategory category, Color currentColor, Action<Color> applyCallback)
         {
@@ -159,29 +350,35 @@ namespace Melon_Loader_Mod5
             float blue = currentColor.b;
             float alpha = currentColor.a;
             var colorPreview = category.CreateFunctionElement("■■■■■■■■■■■", currentColor, null);
+
             var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.1f, 0f, 1f, (r) =>
             {
                 currentColor.r = r;
                 colorPreview.SetColor(currentColor);
             });
+
             var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.1f, 0f, 1f, (g) =>
             {
                 currentColor.g = g;
                 colorPreview.SetColor(currentColor);
             });
+
             var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.1f, 0f, 1f, (b) =>
             {
                 currentColor.b = b;
                 colorPreview.SetColor(currentColor);
             });
-            var colorA = category.CreateFloatElement("Alpha", Color.black, currentColor.a, 0.1f, 0f, 1f, (a) => {
+
+            var colorA = category.CreateFloatElement("Alpha", Color.black, currentColor.a, 0.1f, 0f, 1f, (a) =>
+            {
                 currentColor.a = a;
                 colorPreview.SetColor(currentColor);
             });
+
             category.CreateFunctionElement("Apply", Color.white, delegate ()
             {
                 applyCallback(currentColor);
-                Moggingtime();
+                MoggingTime();
 
             });
 
@@ -190,11 +387,20 @@ namespace Melon_Loader_Mod5
 
         }
 
+        public void OnSetEnabled(bool value) // Some extra stuff for the on enabled button
+        {
+            IsEnabled = value;
+            MelonPrefEnabled.Value = value;
+            MelonPrefCategory.SaveToFile();
+            if (value)
+            {
+                MoggingTime();
+            }
+        }
 
-        public void Moggingtime()
+        public void MoggingTime()
         {
             //I realize I shouldve made these public methods and put them in other files now but whatever
-            // I could 100% make all these way more compressed but i dont really care right now might fix after launch
             var objectsWithKeyword = GameObject.FindObjectsOfType<GameObject>(true);
             foreach (GameObject obj in objectsWithKeyword)
             {
@@ -208,11 +414,7 @@ namespace Melon_Loader_Mod5
                 }
                 else if (obj.name.Contains("grid_Graphics"))
                 {
-                    Extra(obj.transform, bonemenu: false);
-                }
-                else if (obj.name.Contains("ElementGrid"))
-                {
-                    Extra(obj.transform, bonemenu: true);
+                    Extra(obj.transform);
                 }
                 else if (obj.name.Contains("group_toolMenu"))
                 {
@@ -222,9 +424,9 @@ namespace Melon_Loader_Mod5
                 {
                     Avatar(obj.transform, isSecondChild: true);
                 }
-                else if (obj.name.Contains("BodyMallController"))
+                else if (obj.name.Contains("BodyMallController")) 
                 {
-                    Bodymall(obj.transform);
+                    Bodymall(obj.transform); //CHECK OTHER COMMENT DOWN THERE
                 }
                 else if (obj.name.Contains("CANVAS_RADIALUI"))
                 {
@@ -233,6 +435,8 @@ namespace Melon_Loader_Mod5
             }
             RadialMenuButtons();
         }
+
+        
 
         private void LevelSelect(Transform parent, bool isSecondChild)
         {
@@ -297,7 +501,10 @@ namespace Melon_Loader_Mod5
                 {
                     continue;
                 }
-
+                else if (child.name == "Name")
+                {
+                    continue;
+                }
 
                 if (imageComponent != null)
                 {
@@ -324,7 +531,9 @@ namespace Melon_Loader_Mod5
 
             }
         }
-        private void Extra(Transform parent, bool bonemenu)
+
+        
+        private void Extra(Transform parent)
         {
 
 
@@ -332,7 +541,7 @@ namespace Melon_Loader_Mod5
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
-
+                
                 UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
                 TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
 
@@ -340,14 +549,14 @@ namespace Melon_Loader_Mod5
                 {
                     imageComponent.color = East;
                 }
-                else if (textComponent != null && !bonemenu)
+                else if (textComponent != null)
                 {
                     textComponent.color = East;
                 }
 
 
                 // Recursively call the method to modify components in nested children
-                Extra(child, bonemenu: false);
+                Extra(child);
             }
         }
         private void SpawnGun(Transform parent, bool isFourthChild)
@@ -497,6 +706,7 @@ namespace Melon_Loader_Mod5
                 TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
                 TextMeshPro bodyMallTextComponent = child.GetComponent<TextMeshPro>();
 
+
                 if (child.name == "img_outline")
                 {
                     continue;
@@ -509,6 +719,14 @@ namespace Melon_Loader_Mod5
                 {
                     continue;
                 }
+                else if (child.name == "Chart")
+                {
+                    Renderer renderer = child.GetComponent<Renderer>();
+                    Material uniqueMaterial = renderer.material;
+                    uniqueMaterial.color = NorthWest;
+                }
+
+
 
                 if (imageComponent != null)
                 {
@@ -531,7 +749,7 @@ namespace Melon_Loader_Mod5
         }
 
 
-        private void RadialMenuTextImage(Transform parent)
+        private void RadialMenuTextImage(Transform parent) //honestly one of the worst things ive ever written but dont know how else to do this
         {
 
 
@@ -542,7 +760,7 @@ namespace Melon_Loader_Mod5
 
 
 
-                // Get the desiWest component from the child (if exists)
+                
                 UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
                 TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
 
@@ -640,29 +858,32 @@ namespace Melon_Loader_Mod5
         SLZ.UI.PageItemView SW;
         SLZ.UI.PageItemView W;
         SLZ.UI.PageItemView NW;
-        private void RadialMenuButtons()
+
+        
+
+        private void RadialMenuButtons() //is there a better way to do this? probbobly but i dont know it
         {
 
 
-           
-           
-                
-                if (N == null)
-                {
-                    GameObject button_Region_N = GameObject.Find("button_Region_N"); //eject
-                    N = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
-                }
-                if (N != null)
-                {
-                    N.color2 = North;
-                }
+
+
+
+            if (N == null)
+            {
+                GameObject button_Region_N = GameObject.Find("button_Region_N"); //eject
+                N = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+            }
+            if (N != null && IsEnabled)
+            {
+                N.color2 = North;
+            }
 
             if (NE == null)
             {
                 GameObject button_Region_N = GameObject.Find("button_Region_NE"); //Level
                 NE = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (NE != null)
+            if (NE != null && IsEnabled)
             {
                 NE.color2 = NorthEast;
             }
@@ -672,7 +893,7 @@ namespace Melon_Loader_Mod5
                 GameObject button_Region_N = GameObject.Find("button_Region_E"); //Pref
                 E = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (E != null)
+            if (E != null && IsEnabled)
             {
                 E.color2 = East;
             }
@@ -682,7 +903,7 @@ namespace Melon_Loader_Mod5
                 GameObject button_Region_N = GameObject.Find("button_Region_SE"); //Quick Unmute
                 SE = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (SE != null)
+            if (SE != null && IsEnabled)
             {
                 SE.color2 = SouthEast;
             }
@@ -692,7 +913,7 @@ namespace Melon_Loader_Mod5
                 GameObject button_Region_N = GameObject.Find("button_Region_S"); //inv
                 S = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (S != null)
+            if (S != null && IsEnabled)
             {
                 S.color2 = South;
             }
@@ -702,7 +923,7 @@ namespace Melon_Loader_Mod5
                 GameObject button_Region_N = GameObject.Find("button_Region_SW"); //inv
                 SW = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (SW != null)
+            if (SW != null && IsEnabled)
             {
                 SW.color2 = SouthWest;
             }
@@ -712,7 +933,7 @@ namespace Melon_Loader_Mod5
                 GameObject button_Region_N = GameObject.Find("button_Region_W"); //inv
                 W = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (W != null)
+            if (W != null && IsEnabled)
             {
                 W.color2 = West;
             }
@@ -722,12 +943,24 @@ namespace Melon_Loader_Mod5
                 GameObject button_Region_N = GameObject.Find("button_Region_NW"); //inv
                 NW = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
             }
-            if (NW != null)
+            if (NW != null && IsEnabled)
             {
                 NW.color2 = NorthWest;
             }
 
         }
-
+        public static MelonPreferences_Category MelonPrefCategory { get; private set; }
+        public static MelonPreferences_Entry<bool> MelonPrefEnabled { get; private set; }
+        public static bool IsEnabled { get; private set; }
+        public MelonPreferences_Entry<Color> NorthPref { get; private set; }
+        public MelonPreferences_Entry<Color> NorthEastPref { get; private set; }
+        public MelonPreferences_Entry<Color> EastPref { get; private set; }
+        public MelonPreferences_Entry<Color> SouthEastPref { get; private set; }
+        public MelonPreferences_Entry<Color> SouthPref { get; private set; }
+        public MelonPreferences_Entry<Color> SouthWestPref { get; private set; }
+        public MelonPreferences_Entry<Color> WestPref { get; private set; }
+        public MelonPreferences_Entry<Color> EasrPref { get; private set; }
+        public MelonPreferences_Entry<Color> NorthWestPref { get; private set; }
+        public static bool MelonPrefEnabledValue { get; private set; }
     }
 }
