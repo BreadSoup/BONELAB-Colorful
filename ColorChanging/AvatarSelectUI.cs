@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TMPro;
+using UnityEngine;
+namespace Melon_Loader_Mod5
+{
+    public class AvatarSelectUI
+    {
+        Colors Colors = new Colors();
+
+        public void Avatar(Transform parent, bool isSecondChild)
+        {
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                Transform child = parent.GetChild(i);
+
+                if (isSecondChild && i == 1)
+                    continue;
+
+                UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
+                TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
+                TextMeshPro bodyMallTextComponent = child.GetComponent<TextMeshPro>();
+
+                if (child.name == "img_outline")
+                {
+                    continue;
+                }
+                else if (child.name == "img_bg")
+                {
+                    continue;
+                }
+
+
+                if (imageComponent != null)
+                {
+                    imageComponent.color = Colors.NorthWest;
+                }
+                else if (textComponent != null)
+                {
+                    textComponent.color = Colors.NorthWest;
+                }
+                else if (bodyMallTextComponent != null)
+                {
+                    bodyMallTextComponent.color = Colors.NorthWest;
+                }
+
+                Avatar(child, isSecondChild: false);
+            }
+        }
+        public void Bodymall(Transform parent)
+        {
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                Transform child = parent.GetChild(i);
+
+                UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
+                TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
+                TextMeshPro bodyMallTextComponent = child.GetComponent<TextMeshPro>();
+
+
+                if (child.name == "img_outline")
+                {
+                    continue;
+                }
+                else if (child.name == "img_bg")
+                {
+                    continue;
+                }
+                else if (child.name.Contains("image_backline"))
+                {
+                    continue;
+                }
+                else if (child.name == "Chart")
+                {
+                    Renderer renderer = child.GetComponent<Renderer>();
+                    Material uniqueMaterial = renderer.material;
+                    uniqueMaterial.color = Colors.NorthWest;
+                }
+
+
+
+                if (imageComponent != null)
+                {
+                    imageComponent.color = Colors.NorthWest;
+                }
+                else if (textComponent != null)
+                {
+                    textComponent.color = Colors.NorthWest;
+                }
+                else if (bodyMallTextComponent != null)
+                {
+                    bodyMallTextComponent.color = Colors.NorthWest;
+                }
+
+                Bodymall(child);
+            }
+        }
+    }
+}
+
