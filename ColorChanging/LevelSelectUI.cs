@@ -10,9 +10,17 @@ namespace Melon_Loader_Mod5
 {
     public class LevelSelectUI
     {
-        Colors Colors = new Colors();
-        public void LevelSelect(Transform parent, bool isSecondChild)
+        static Color color;
+        public static void LevelSelect(Transform parent, bool isSecondChild)
         {
+            if (PreferencesCreator.IsEnabled)
+            {
+                color = Colors.East;
+            }
+            else
+            {
+                color = Color.white;
+            }
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
@@ -25,11 +33,11 @@ namespace Melon_Loader_Mod5
 
                 if (imageComponent != null)
                 {
-                    imageComponent.color = Colors.NorthEast;
+                    imageComponent.color = color;
                 }
                 else if (textComponent != null)
                 {
-                    textComponent.color = Colors.NorthEast;
+                    textComponent.color = color;
                 }
 
                 LevelSelect(child, isSecondChild: false);

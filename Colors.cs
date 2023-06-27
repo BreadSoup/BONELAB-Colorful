@@ -9,113 +9,126 @@ namespace Melon_Loader_Mod5
 {
     public class Colors
     {
-        PreferencesCreator Preferences = new PreferencesCreator();
 
-        public Color North = new Color(0f, 1f, 1f, 1f);
+        public static Color North = new Color(0f, 1f, 1f, 1f);
 
-        public Color NorthEast = new Color(1f, 0.5f, 0f, 1f); //level
+        public static Color NorthEast = new Color(1f, 0.5f, 0f, 1f); //level
 
-        public Color East = new Color(1f, 1f, 0f, 1f); //prefrances
+        public static Color East = new Color(1f, 1f, 0f, 1f); //prefrances
 
-        public Color SouthEast = new Color(0f, 0f, 1f, 1f); //quick unmute
+        public static Color SouthEast = new Color(0f, 0f, 1f, 1f); //quick unmute
 
-        public Color South = new Color(1f, 0f, 1f, 1f); //inventory
+        public static Color South = new Color(1f, 0f, 1f, 1f); //inventory
 
-        public Color SouthWest = new Color(0.5f, 0f, 1f, 1f); //devtools
+        public static Color SouthWest = new Color(0.5f, 0f, 1f, 1f); //devtools
 
-        public Color West = new Color(1f, 0f, 0f, 1f); //spawngun 
+        public static Color West = new Color(1f, 0f, 0f, 1f); //spawngun 
 
-        public Color NorthWest = new Color(0f, 1f, 0f, 1f); //avatar
+        public static Color NorthWest = new Color(0f, 1f, 0f, 1f); //avatar
+
+        public static Color Middle = new Color(1f, 0.2f, 0.2f, 0.7f); //cancel
 
         //defults 
-        public Color NorthDefult = new Color(0f, 1f, 1f, 1f); //eject
+        //I know I spelled default wrong but it doesnt matter
+        public static Color NorthDefult = new Color(0f, 1f, 1f, 1f); //eject
 
-        public Color NorthEastDefult = new Color(1f, 0.5f, 0f, 1f); //level
+        public static Color NorthEastDefult = new Color(1f, 0.5f, 0f, 1f); //level
 
-        public Color EastDefult = new Color(1f, 1f, 0f, 1f); //prefrances
+        public static Color EastDefult = new Color(1f, 1f, 0f, 1f); //prefrances
 
-        public Color SouthEastDefult = new Color(0f, 0f, 1f, 1f); //quick unmute
+        public static Color SouthEastDefult = new Color(0f, 0f, 1f, 1f); //quick unmute
 
-        public Color SouthDefult = new Color(1f, 0f, 1f, 1f); //inventory
+        public static Color SouthDefult = new Color(1f, 0f, 1f, 1f); //inventory
 
-        public Color SouthWestDefult = new Color(0.5f, 0f, 1f, 1f); //devtools
+        public static Color SouthWestDefult = new Color(0.5f, 0f, 1f, 1f); //devtools
 
-        public Color WestDefult = new Color(1f, 0f, 0f, 1f); //spawngun 
+        public static Color WestDefult = new Color(1f, 0f, 0f, 1f); //spawngun 
 
-        public Color NorthWestDefult = new Color(0f, 1f, 0f, 1f); //avatar
+        public static Color NorthWestDefult = new Color(0f, 1f, 0f, 1f); //avatar
 
-        public void ColorAssignment()
+        public static Color MiddleDefult = new Color(1f, 0.2f, 0.2f, 1f); //cancel
+
+        public static void ColorAssignment()
         {
-            if (Preferences.NorthPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.NorthPref != null)
             {
-                North = Preferences.NorthPref.Value;
+                North = Melon_Loader_Mod5.PreferencesCreator.NorthPref.Value;
             }
             else
             {
                 North = NorthDefult;
             }
 
-            if (Preferences.NorthEastPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.NorthEastPref.Value != null)
             {
-                NorthEast = Preferences.NorthEastPref.Value;
+                NorthEast = Melon_Loader_Mod5.PreferencesCreator.NorthEastPref.Value;
             }
             else
             {
                 NorthEast = NorthEastDefult;
             }
 
-            if (Preferences.EastPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.EastPref.Value != null)
             {
-                East = Preferences.EastPref.Value;
+                East = Melon_Loader_Mod5.PreferencesCreator.EastPref.Value;
             }
             else
             {
                 East = EastDefult;
             }
 
-            if (Preferences.SouthEastPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.SouthEastPref.Value != null)
             {
-                SouthEast = Preferences.SouthEastPref.Value;
+                SouthEast = Melon_Loader_Mod5.PreferencesCreator.SouthEastPref.Value;
             }
             else
             {
                 SouthEast = SouthEastDefult;
             }
 
-            if (Preferences.SouthPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.SouthPref.Value != null)
             {
-                South = Preferences.SouthPref.Value;
+                South = Melon_Loader_Mod5.PreferencesCreator.SouthPref.Value;
             }
             else
             {
                 South = SouthDefult;
             }
 
-            if (Preferences.SouthWestPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.SouthWestPref.Value != null)
             {
-                SouthWest = Preferences.SouthWestPref.Value;
+                SouthWest = Melon_Loader_Mod5.PreferencesCreator.SouthWestPref.Value;
             }
             else
             {
                 SouthWest = SouthWestDefult;
             }
 
-            if (Preferences.WestPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.WestPref.Value != null)
             {
-                West = Preferences.WestPref.Value;
+                West = Melon_Loader_Mod5.PreferencesCreator.WestPref.Value;
             }
             else
             {
                 West = WestDefult;
             }
 
-            if (Preferences.NorthWestPref.Value != null)
+            if (Melon_Loader_Mod5.PreferencesCreator.NorthWestPref.Value != null)
             {
-                NorthWest = Preferences.NorthWestPref.Value;
+                NorthWest = Melon_Loader_Mod5.PreferencesCreator.NorthWestPref.Value;
             }
             else
             {
                 NorthWest = NorthWestDefult;
+            }
+
+            if (Melon_Loader_Mod5.PreferencesCreator.MiddlePref.Value != null)
+            {
+                Middle = Melon_Loader_Mod5.PreferencesCreator.MiddlePref.Value;
+            }
+            else
+            {
+                Middle = MiddleDefult;
             }
 
         }

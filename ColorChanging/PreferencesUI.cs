@@ -11,15 +11,26 @@ namespace Melon_Loader_Mod5
 {
     public class PreferencesUI
     {
-        Colors Colors = new Colors();
-        public void Preferences(Transform parent, bool isSecondChild)
+        static Color color;
+
+        public static void Preferences(Transform parent, bool isSecondChild)
         {
+            if (PreferencesCreator.IsEnabled)
+            {
+                color = Colors.East;
+            }
+            else
+            {
+                color = Color.white;
+            }
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
 
                 if (isSecondChild && i == 1)
                     continue;
+
+                Color color;
 
                 UnityEngine.UI.Image imageComponent = child.GetComponent<UnityEngine.UI.Image>();
                 TextMeshProUGUI textComponent = child.GetComponent<TextMeshProUGUI>();
@@ -45,32 +56,49 @@ namespace Melon_Loader_Mod5
                     continue;
                 }
 
+                if (PreferencesCreator.IsEnabled)
+                {
+                     color = Colors.East;
+                }
+                else
+                {
+                     color = Color.white;
+                }
+
                 if (imageComponent != null)
                 {
-                    imageComponent.color = Colors.East;
+                    imageComponent.color = color;
                 }
                 else if (textComponent != null)
                 {
-                    textComponent.color = Colors.East;
+                    textComponent.color = color;
                 }
                 else if (bonemenuimageComponent != null)
                 {
-                    bonemenuimageComponent.color = Colors.East;
+                    bonemenuimageComponent.color = color;
                 }
                 else if (bonemenutextComponent != null)
                 {
-                    bonemenutextComponent.color = Colors.East;
+                    bonemenutextComponent.color = color;
                 }
                 else if (literallyASinglecharacter != null)
                 {
-                    literallyASinglecharacter.color = Colors.East;
+                    literallyASinglecharacter.color = color;
                 }
 
                 Preferences(child, isSecondChild: false);
             }
         }
-        public void Extra(Transform parent)
+        public static void Extra(Transform parent)
         {
+            if (PreferencesCreator.IsEnabled)
+            {
+                color = Colors.East;
+            }
+            else
+            {
+                color = Color.white;
+            }
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
@@ -80,11 +108,11 @@ namespace Melon_Loader_Mod5
 
                 if (imageComponent != null)
                 {
-                    imageComponent.color = Colors.East;
+                    imageComponent.color = color;
                 }
                 else if (textComponent != null)
                 {
-                    textComponent.color = Colors.East;
+                    textComponent.color = color;
                 }
 
                 Extra(child);

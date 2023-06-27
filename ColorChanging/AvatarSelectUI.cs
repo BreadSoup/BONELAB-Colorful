@@ -9,10 +9,17 @@ namespace Melon_Loader_Mod5
 {
     public class AvatarSelectUI
     {
-        Colors Colors = new Colors();
-
-        public void Avatar(Transform parent, bool isSecondChild)
+        static Color color;
+        public static void Avatar(Transform parent, bool isSecondChild)
         {
+            if (PreferencesCreator.IsEnabled)
+            {
+                color = Colors.East;
+            }
+            else
+            {
+                color = Color.white;
+            }
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
@@ -36,22 +43,30 @@ namespace Melon_Loader_Mod5
 
                 if (imageComponent != null)
                 {
-                    imageComponent.color = Colors.NorthWest;
+                    imageComponent.color = color;
                 }
                 else if (textComponent != null)
                 {
-                    textComponent.color = Colors.NorthWest;
+                    textComponent.color = color;
                 }
                 else if (bodyMallTextComponent != null)
                 {
-                    bodyMallTextComponent.color = Colors.NorthWest;
+                    bodyMallTextComponent.color = color;
                 }
 
                 Avatar(child, isSecondChild: false);
             }
         }
-        public void Bodymall(Transform parent)
+        public static void Bodymall(Transform parent)
         {
+            if (PreferencesCreator.IsEnabled)
+            {
+                color = Colors.East;
+            }
+            else
+            {
+                color = Color.white;
+            }
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
@@ -77,22 +92,22 @@ namespace Melon_Loader_Mod5
                 {
                     Renderer renderer = child.GetComponent<Renderer>();
                     Material uniqueMaterial = renderer.material;
-                    uniqueMaterial.color = Colors.NorthWest;
+                    uniqueMaterial.color = color;
                 }
 
 
 
                 if (imageComponent != null)
                 {
-                    imageComponent.color = Colors.NorthWest;
+                    imageComponent.color = color;
                 }
                 else if (textComponent != null)
                 {
-                    textComponent.color = Colors.NorthWest;
+                    textComponent.color = color;
                 }
                 else if (bodyMallTextComponent != null)
                 {
-                    bodyMallTextComponent.color = Colors.NorthWest;
+                    bodyMallTextComponent.color = color;
                 }
 
                 Bodymall(child);

@@ -86,7 +86,7 @@
     <Compile Include="ColorChanging\SpawnGunUI.cs" />
     <Compile Include="Colors.cs" />
     <Compile Include="PreferencesCreator.cs" />
-    <Compile Include="MelonLoaderMod.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

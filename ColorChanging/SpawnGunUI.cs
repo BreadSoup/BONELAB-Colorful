@@ -9,9 +9,17 @@ namespace Melon_Loader_Mod5
 {
     public class SpawnGunUI
     {
-        Colors Colors = new Colors();
-        public void SpawnGun(Transform parent, bool isFourthChild)
+        static Color color;
+        public static void SpawnGun(Transform parent, bool isFourthChild)
         {
+            if (PreferencesCreator.IsEnabled)
+            {
+                color = Colors.East;
+            }
+            else
+            {
+                color = Color.white;
+            }
             for (int i = 0; i < parent.childCount; i++)
             {
                 Transform child = parent.GetChild(i);
@@ -37,15 +45,15 @@ namespace Melon_Loader_Mod5
 
                 if (imageComponent != null)
                 {
-                    imageComponent.color = Colors.West;
+                    imageComponent.color = color;
                 }
                 else if (textComponent != null)
                 {
-                    textComponent.color = Colors.West;
+                    textComponent.color = color;
                 }
                 else if (spawnGuntextComponent != null)
                 {
-                    spawnGuntextComponent.color = Colors.West;
+                    spawnGuntextComponent.color = color;
                 }
 
                 SpawnGun(child, isFourthChild: false);

@@ -14,28 +14,26 @@ using BoneLib.BoneMenu.Elements;
 
 namespace Melon_Loader_Mod5
 {
-    public class PreferencesCreator
+    internal class PreferencesCreator
     {
-        Melon_Loader_Mod5 main = new Melon_Loader_Mod5();
-
-        Colors Colors = new Colors();
+        
 
         public static MelonPreferences_Category MelonPrefCategory { get; private set; }
         public static MelonPreferences_Entry<bool> MelonPrefEnabled { get; private set; }
         public static bool IsEnabled { get; private set; }
-        public MelonPreferences_Entry<Color> NorthPref { get; private set; }
-        public MelonPreferences_Entry<Color> NorthEastPref { get; private set; }
-        public MelonPreferences_Entry<Color> EastPref { get; private set; }
-        public MelonPreferences_Entry<Color> SouthEastPref { get; private set; }
-        public MelonPreferences_Entry<Color> SouthPref { get; private set; }
-        public MelonPreferences_Entry<Color> SouthWestPref { get; private set; }
-        public MelonPreferences_Entry<Color> WestPref { get; private set; }
-        public MelonPreferences_Entry<Color> EasrPref { get; private set; }
-        public MelonPreferences_Entry<Color> NorthWestPref { get; private set; }
+        public static MelonPreferences_Entry<Color> NorthPref { get; private set; }
+        public static MelonPreferences_Entry<Color> NorthEastPref { get; private set; }
+        public static MelonPreferences_Entry<Color> EastPref { get; private set; }
+        public static MelonPreferences_Entry<Color> SouthEastPref { get; private set; }
+        public static MelonPreferences_Entry<Color> SouthPref { get; private set; }
+        public static MelonPreferences_Entry<Color> SouthWestPref { get; private set; }
+        public static MelonPreferences_Entry<Color> WestPref { get; private set; }
+        public static MelonPreferences_Entry<Color> NorthWestPref { get; private set; }
+        public static MelonPreferences_Entry<Color> MiddlePref { get; private set; }
         public static bool MelonPrefEnabledValue { get; private set; }
 
 
-        public void MelonPreferencesCreator()
+        public static void MelonPreferencesCreator()
         {
             MelonPrefCategory = MelonPreferences.CreateCategory("Colorful");
             MelonPrefEnabled = MelonPrefCategory.CreateEntry<bool>("IsEnabled", true, null, null, false, false, null, null);
@@ -48,8 +46,9 @@ namespace Melon_Loader_Mod5
             SouthWestPref = MelonPrefCategory.CreateEntry<Color>("Spawn Devtools Color", Colors.SouthWestDefult, null, null, false);
             WestPref = MelonPrefCategory.CreateEntry<Color>("SpawnGun Menu Color", Colors.WestDefult, null, null, false);
             NorthWestPref = MelonPrefCategory.CreateEntry<Color>("Avatar Select Color", Colors.NorthWestDefult, null, null, false);
+            MiddlePref = MelonPrefCategory.CreateEntry<Color>("Radial Cancel Color", Colors.MiddleDefult, null, null, false);
         }
-        public void BonemenuCreator()
+        public static void BonemenuCreator()
         {
 
             string NorthHexcode = ColorUtility.ToHtmlStringRGBA(Colors.North);
@@ -213,8 +212,199 @@ namespace Melon_Loader_Mod5
                 NorthWestPref.Value = updatedColor;
                 MelonPrefCategory.SaveToFile();
             });
+
+            var extra = category.CreateCategory("Extra", Color.white);
+
+            var MiddleButton = extra.CreateCategory("Radial Cancel", Colors.Middle);
+            ColorfulMenuCreator(MiddleButton, Colors.Middle, (updatedColor) =>
+            {
+                Colors.Middle = updatedColor;
+                MiddleButton.SetColor(updatedColor);
+                MiddlePref.Value = updatedColor;
+                MelonPrefCategory.SaveToFile();
+            });
+
+            var OverrideButton = extra.CreateCategory("Color Override", Color.black);
+            ColorfulMenuCreatorOverride(OverrideButton, Color.white, (updatedColor) =>
+            {
+                Colors.Middle = updatedColor;
+                MiddleButton.SetColor(updatedColor);
+                Colors.Middle = updatedColor;
+                MiddlePref.Value = updatedColor;
+
+                NorthButton.SetColor(updatedColor);
+                Colors.North = updatedColor;
+                NorthPref.Value = updatedColor;
+
+                NorthEastButton.SetColor(updatedColor);
+                Colors.NorthEast = updatedColor;
+                NorthEastPref.Value = updatedColor;
+
+                EastButton.SetColor(updatedColor);
+                Colors.East = updatedColor;
+                EastPref.Value = updatedColor;
+
+                SouthEastButton.SetColor(updatedColor);
+                Colors.SouthEast = updatedColor;
+                SouthEastPref.Value = updatedColor;
+
+                SouthButton.SetColor(updatedColor);
+                Colors.South = updatedColor;
+                SouthPref.Value = updatedColor;
+
+                SouthWestButton.SetColor(updatedColor);
+                Colors.SouthWest = updatedColor;
+                SouthWestPref.Value = updatedColor;
+
+                WestButton.SetColor(updatedColor);
+                Colors.West = updatedColor;
+                WestPref.Value = updatedColor;
+
+                NorthWestButton.SetColor(updatedColor);
+                Colors.NorthWest = updatedColor;
+                NorthWestPref.Value = updatedColor;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            var DefaultButton = extra.CreateCategory("Reset To Defaults", Color.white);
+            DefaultButton.CreateFunctionElement("Default Eject", Colors.NorthDefult, delegate ()
+            {
+                NorthButton.SetColor(Colors.NorthDefult);
+                Colors.North = Colors.NorthDefult;
+                NorthPref.Value = Colors.NorthDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+            DefaultButton.CreateFunctionElement("Defult Level Select", Colors.NorthEastDefult, delegate ()
+            {
+                NorthEastButton.SetColor(Colors.NorthEastDefult);
+                Colors.NorthEast = Colors.NorthEastDefult;
+                NorthEastPref.Value = Colors.NorthEastDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Preferences", Colors.EastDefult, delegate ()
+            {
+                EastButton.SetColor(Colors.EastDefult);
+                Colors.East = Colors.EastDefult;
+                EastPref.Value = Colors.EastDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Quick Mute", Colors.SouthEastDefult, delegate ()
+            {
+                SouthEastButton.SetColor(Colors.SouthEastDefult);
+                Colors.SouthEast = Colors.SouthEastDefult;
+                SouthEastPref.Value = Colors.SouthEastDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Inventory", Colors.SouthDefult, delegate ()
+            {
+                SouthButton.SetColor(Colors.SouthDefult);
+                Colors.South = Colors.SouthDefult;
+                SouthPref.Value = Colors.SouthDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Spawn DevTools", Colors.SouthWestDefult, delegate ()
+            {
+                SouthWestButton.SetColor(Colors.SouthWestDefult);
+                Colors.SouthWest = Colors.SouthWestDefult;
+                SouthWestPref.Value = Colors.SouthWestDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Spawn Gun Menu", Colors.WestDefult, delegate ()
+            {
+                WestButton.SetColor(Colors.WestDefult);
+                Colors.West = Colors.WestDefult;
+                WestPref.Value = Colors.WestDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Avatar Select", Colors.NorthWestDefult, delegate ()
+            {
+                NorthWestButton.SetColor(Colors.NorthWestDefult);
+                Colors.NorthWest = Colors.NorthWestDefult;
+                NorthWestPref.Value = Colors.NorthWestDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            DefaultButton.CreateFunctionElement("Defult Radial Cancel", Colors.MiddleDefult, delegate ()
+            {
+                MiddleButton.SetColor(Colors.MiddleDefult);
+                Colors.Middle = Colors.MiddleDefult;
+                MiddlePref.Value = Colors.MiddleDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+
+            ColorfulMenuCreatorDefault(DefaultButton, (updatedColor) =>
+            {
+                Colors.Middle = Colors.MiddleDefult;
+                MiddleButton.SetColor(Colors.MiddleDefult);
+                Colors.Middle = Colors.MiddleDefult;
+                MiddlePref.Value = Colors.MiddleDefult;
+
+                NorthButton.SetColor(Colors.NorthDefult);
+                Colors.North = Colors.NorthDefult;
+                NorthPref.Value = Colors.NorthDefult;
+
+                NorthEastButton.SetColor(Colors.NorthEastDefult);
+                Colors.NorthEast = Colors.NorthEastDefult;
+                NorthEastPref.Value = Colors.NorthEastDefult;
+
+                EastButton.SetColor(Colors.EastDefult);
+                Colors.East = Colors.EastDefult;
+                EastPref.Value = Colors.EastDefult;
+
+                SouthEastButton.SetColor(Colors.SouthEastDefult);
+                Colors.SouthEast = Colors.SouthEastDefult;
+                SouthEastPref.Value = Colors.SouthEastDefult;
+
+                SouthButton.SetColor(Colors.SouthDefult);
+                Colors.South = Colors.SouthDefult;
+                SouthPref.Value = Colors.SouthDefult;
+
+                SouthWestButton.SetColor(Colors.SouthWestDefult);
+                Colors.SouthWest = Colors.SouthWestDefult;
+                SouthWestPref.Value = Colors.SouthWestDefult;
+
+                WestButton.SetColor(Colors.WestDefult);
+                Colors.West = Colors.WestDefult;
+                WestPref.Value = Colors.WestDefult;
+
+                NorthWestButton.SetColor(Colors.NorthWestDefult);
+                Colors.NorthWest = Colors.NorthWestDefult;
+                NorthWestPref.Value = Colors.NorthWestDefult;
+
+                Melon_Loader_Mod5.Main.MoggingTime();
+                MelonPrefCategory.SaveToFile();
+            });
+            
+
         }
-        public void ColorfulMenuCreator(MenuCategory category, Color currentColor, Action<Color> applyCallback)
+        
+        public static void ColorfulMenuCreator(MenuCategory category, Color currentColor, Action<Color> applyCallback)
         {
             float red = currentColor.r;
             float green = currentColor.g;
@@ -249,25 +439,58 @@ namespace Melon_Loader_Mod5
             category.CreateFunctionElement("Apply", Color.white, delegate ()
             {
                 applyCallback(currentColor);
-                main.MoggingTime();
+                Melon_Loader_Mod5.Main.MoggingTime();
 
             });
         }
 
-        public void OnSetEnabled(bool value) // Some extra stuff for the on enabled button
+        public static void ColorfulMenuCreatorOverride(MenuCategory category, Color currentColor, Action<Color> applyCallback)
+        {
+            float red = currentColor.r;
+            float green = currentColor.g;
+            float blue = currentColor.b;
+            float alpha = currentColor.a;
+            var colorPreview = category.CreateFunctionElement("■■■■■■■■■■■", currentColor, null);
+
+            var colorR = category.CreateFloatElement("Red", Color.red, currentColor.r, 0.1f, 0f, 1f, (r) =>
+            {
+                currentColor.r = r;
+                colorPreview.SetColor(currentColor);
+            });
+
+            var colorG = category.CreateFloatElement("Green", Color.green, currentColor.g, 0.1f, 0f, 1f, (g) =>
+            {
+                currentColor.g = g;
+                colorPreview.SetColor(currentColor);
+            });
+
+            var colorB = category.CreateFloatElement("Blue", Color.blue, currentColor.b, 0.1f, 0f, 1f, (b) =>
+            {
+                currentColor.b = b;
+                colorPreview.SetColor(currentColor);
+            });
+
+            var colorA = category.CreateFloatElement("Alpha", Color.black, currentColor.a, 0.1f, 0f, 1f, (a) =>
+            {
+                currentColor.a = a;
+                colorPreview.SetColor(currentColor);
+            });
+            category.CreateFunctionElement("Apply", Color.white, () => applyCallback(currentColor), "Are you sure? This will override all colors you've set");
+        }
+
+        public static void ColorfulMenuCreatorDefault(MenuCategory category, Action<Color> applyCallback)
+        {
+            category.CreateFunctionElement("Default All", Color.black, () => applyCallback(Color.black), "Are you sure? This will set all colors you've set to default");
+        }
+
+
+        public static void OnSetEnabled(bool value) // Some extra stuff for the on enabled button
         {
             IsEnabled = value;
             MelonPrefEnabled.Value = value;
             MelonPrefCategory.SaveToFile();
-            if (value)
-            {
-                main.MoggingTime();
-            }
-        }
+            Melon_Loader_Mod5.Main.MoggingTime();
 
-        public bool GetIsEnabled()
-        {
-            return IsEnabled;
         }
     }
 }
