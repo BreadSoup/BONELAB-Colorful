@@ -78,7 +78,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MelonLoaderMod.cs" />
+    <Compile Include="ColorChanging\AvatarSelectUI.cs" />
+    <Compile Include="ColorChanging\LevelSelectUI.cs" />
+    <Compile Include="ColorChanging\PreferencesUI.cs" />
+    <Compile Include="ColorChanging\RadialMenuButtonsUI.cs" />
+    <Compile Include="ColorChanging\RadialMenuTextAndImageUI.cs" />
+    <Compile Include="ColorChanging\SpawnGunUI.cs" />
+    <Compile Include="Colors.cs" />
+    <Compile Include="PreferencesCreator.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
