@@ -61,7 +61,7 @@ namespace Melon_Loader_Mod5
         {
             if (PreferencesCreator.IsEnabled)
             {
-                color = Colors.East;
+                color = Colors.NorthWest;
             }
             else
             {

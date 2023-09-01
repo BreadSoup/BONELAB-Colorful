@@ -22,7 +22,7 @@ namespace Melon_Loader_Mod5
         public const string Name = "Colorful";
         public const string Author = "Bread Soup";
         public const string Company = null;
-        public const string Version = "1.1.1";
+        public const string Version = "1.1.2";
         public const string DownloadLink = null;
     }
 
