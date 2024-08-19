@@ -1,18 +1,5 @@
 ﻿using MelonLoader;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.IO;
-using BoneLib.BoneMenu;
-using System;
-using BoneLib.BoneMenu.Elements;
-
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using BoneLib;
-using SLZ.VRMK;
-using System.Security.Policy;
-using System.Collections.Generic;
 
 
 namespace Melon_Loader_Mod5
@@ -40,7 +27,7 @@ namespace Melon_Loader_Mod5
         }
         public override void OnInitializeMelon()
         {
-            BoneLib.Hooking.OnLevelInitialized += (_) => { OnSceneAwake(); }; //Fusion is under MIT licencse so pretty sure as long as I cWestit it I'll be fine
+            BoneLib.Hooking.OnLevelLoaded += (_) => { OnSceneAwake(); }; //Fusion is under MIT licencse so pretty sure as long as I cWestit it I'll be fine
 
             //Colors Colors = new Colors();
             Melon_Loader_Mod5.PreferencesCreator.MelonPreferencesCreator();

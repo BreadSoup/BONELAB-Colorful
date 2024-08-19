@@ -1,150 +1,109 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Il2CppSLZ.Bonelab;
 using UnityEngine;
 namespace Melon_Loader_Mod5
 {
     public class RadialMenuButtonsUI
     {
 
-        static SLZ.UI.PageItemView N;
-        static SLZ.UI.PageItemView NE;
-        static SLZ.UI.PageItemView E;
-        static SLZ.UI.PageItemView SE;
-        static SLZ.UI.PageItemView S;
-        static SLZ.UI.PageItemView SW;
-        static SLZ.UI.PageItemView W;
-        static SLZ.UI.PageItemView NW;
-        static SLZ.UI.PageElementView M;
+        static PageItemView N;
+        static PageItemView NE;
+        static PageItemView E;
+        static PageItemView SE;
+        static PageItemView S;
+        static PageItemView SW;
+        static PageItemView W;
+        static PageItemView NW;
+        static PageElementView M;
         public static void RadialMenuButtons() //is there a better way to do this? probably but i dont know it
         {
             if (N == null)
             {
                 GameObject button_Region_N = GameObject.Find("button_Region_N"); //eject
-                N = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                if (button_Region_N != null) N = button_Region_N.GetComponent<PageItemView>();
             }
-            if (N != null && PreferencesCreator.IsEnabled)
+            if (N != null)
             {
-                N.color2 = Colors.North;
-            }
-            else
-            {
-                N.color2 = Color.white;
+                N.color2 = PreferencesCreator.IsEnabled ? Colors.North : Color.white;
             }
 
             if (NE == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_NE"); //Level
-                NE = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_NE = GameObject.Find("button_Region_NE"); //Level
+                if (button_Region_NE != null) NE = button_Region_NE.GetComponent<PageItemView>();
             }
-            if (NE != null && PreferencesCreator.IsEnabled)
+            if (NE != null)
             {
-                NE.color2 = Colors.NorthEast;
-            }
-            else
-            {
-                NE.color2 = Color.white;
+                NE.color2 = PreferencesCreator.IsEnabled ? Colors.NorthEast : Color.white;
             }
 
             if (E == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_E"); //Pref
-                E = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_E = GameObject.Find("button_Region_E"); //Pref
+                if (button_Region_E != null) E = button_Region_E.GetComponent<PageItemView>();
             }
-            if (E != null && PreferencesCreator.IsEnabled)
+            if (E != null)
             {
-                E.color2 = Colors.East;
-            }
-            else
-            {
-                E.color2 = Color.white;
+                E.color2 = PreferencesCreator.IsEnabled ? Colors.East : Color.white;
             }
 
             if (SE == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_SE"); //Quick Unmute
-                SE = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_SE = GameObject.Find("button_Region_SE"); //Quick Unmute
+                if (button_Region_SE != null) SE = button_Region_SE.GetComponent<PageItemView>();
             }
-            if (SE != null && PreferencesCreator.IsEnabled)
+            if (SE != null)
             {
-                SE.color2 = Colors.SouthEast;
-            }
-            else
-            {
-                SE.color2 = Color.white;
+                SE.color2 = PreferencesCreator.IsEnabled ? Colors.SouthEast : Color.white;
             }
 
             if (S == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_S"); //inv
-                S = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_S = GameObject.Find("button_Region_S"); //inv
+                if (button_Region_S != null) S = button_Region_S.GetComponent<PageItemView>();
             }
-            if (S != null && PreferencesCreator.IsEnabled)
+            if (S != null)
             {
-                S.color2 = Colors.South;
-            }
-            else
-            {
-                S.color2 = Color.white;
+                S.color2 = PreferencesCreator.IsEnabled ? Colors.South : Color.white;
             }
 
             if (SW == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_SW"); //inv
-                SW = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_SW = GameObject.Find("button_Region_SW"); //inv
+                if (button_Region_SW != null) SW = button_Region_SW.GetComponent<PageItemView>();
             }
-            if (SW != null && PreferencesCreator.IsEnabled)
+            if (SW != null)
             {
-                SW.color2 = Colors.SouthWest;
-            }
-            else
-            {
-                SW.color2 = Color.white;
+                SW.color2 = PreferencesCreator.IsEnabled ? Colors.SouthWest : Color.white;
             }
 
             if (W == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_W"); //inv
-                W = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_W = GameObject.Find("button_Region_W"); //inv
+                if (button_Region_W != null) W = button_Region_W.GetComponent<PageItemView>();
             }
-            if (W != null && PreferencesCreator.IsEnabled)
+            if (W != null)
             {
-                W.color2 = Colors.West;
-            }
-            else
-            {
-                W.color2 = Color.white;
+                W.color2 = PreferencesCreator.IsEnabled ? Colors.West : Color.white;
             }
 
             if (NW == null)
             {
-                GameObject button_Region_N = GameObject.Find("button_Region_NW"); //inv
-                NW = button_Region_N.GetComponent<SLZ.UI.PageItemView>();
+                GameObject button_Region_NW = GameObject.Find("button_Region_NW"); //inv
+                if (button_Region_NW != null) NW = button_Region_NW.GetComponent<PageItemView>();
             }
-            if (NW != null && PreferencesCreator.IsEnabled)
+            if (NW != null)
             {
-                NW.color2 = Colors.NorthWest;
-            }
-            else
-            {
-                NW.color2 = Color.white;
+                NW.color2 = PreferencesCreator.IsEnabled ? Colors.NorthWest : Color.white;
             }
 
             if (M == null)
             {
                 GameObject button_Region_M = GameObject.Find("button_cancel"); //cancel
-                M = button_Region_M.GetComponent<SLZ.UI.PageElementView>();
+                if (button_Region_M != null) M = button_Region_M.GetComponent<PageElementView>();
             }
-            if (M != null && PreferencesCreator.IsEnabled)
+            if (M != null)
             {
-                M.color2 = Colors.Middle;
-            }
-            else
-            {
-                Color cancel = new Color(1f, 0.2667f, 0.4824f, 0.749f);
-                M.color2 = cancel;
+                M.color2 = PreferencesCreator.IsEnabled ? Colors.Middle : new(1f, 0.2667f, 0.4824f, 0.749f);
             }
 
         }
