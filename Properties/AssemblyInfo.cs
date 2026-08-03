@@ -3,20 +3,20 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle(Melon_Loader_Mod5.BuildInfo.Name)]
+[assembly: AssemblyTitle(Colorful.BuildInfo.Name)]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany(Melon_Loader_Mod5.BuildInfo.Company)]
-[assembly: AssemblyProduct(Melon_Loader_Mod5.BuildInfo.Name)]
-[assembly: AssemblyCopyright("Created by " + Melon_Loader_Mod5.BuildInfo.Author)]
-[assembly: AssemblyTrademark(Melon_Loader_Mod5.BuildInfo.Company)]
+[assembly: AssemblyCompany(Colorful.BuildInfo.Company)]
+[assembly: AssemblyProduct(Colorful.BuildInfo.Name)]
+[assembly: AssemblyCopyright("Created by " + Colorful.BuildInfo.Author)]
+[assembly: AssemblyTrademark(Colorful.BuildInfo.Company)]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 //[assembly: Guid("")]
-[assembly: AssemblyVersion(Melon_Loader_Mod5.BuildInfo.Version)]
-[assembly: AssemblyFileVersion(Melon_Loader_Mod5.BuildInfo.Version)]
+[assembly: AssemblyVersion(Colorful.BuildInfo.Version)]
+[assembly: AssemblyFileVersion(Colorful.BuildInfo.Version)]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: MelonInfo(typeof(Melon_Loader_Mod5.Main), Melon_Loader_Mod5.BuildInfo.Name, Melon_Loader_Mod5.BuildInfo.Version, Melon_Loader_Mod5.BuildInfo.Author, Melon_Loader_Mod5.BuildInfo.DownloadLink)]
+[assembly: MelonInfo(typeof(Colorful.Main), Colorful.BuildInfo.Name, Colorful.BuildInfo.Version, Colorful.BuildInfo.Author, Colorful.BuildInfo.DownloadLink)]
 
 
 // Create and Setup a MelonModGame to mark a Mod as Universal or Compatible with specific Games.

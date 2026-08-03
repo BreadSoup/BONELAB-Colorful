@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TMPro;
+using Il2CppTMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Melon_Loader_Mod5
+namespace Colorful
 {
     public class PreferencesUI
     {
@@ -52,6 +52,10 @@ namespace Melon_Loader_Mod5
                     continue;
                 }
                 else if (child.name == "Name")
+                {
+                    continue;
+                }
+                else if (child.name.Contains("BoneMenu")) //skip BoneMenu's own canvas - its pooled buttons tint at random. The tab button (MenuButton) doesn't contain "BoneMenu" so it's still colored.
                 {
                     continue;
                 }
