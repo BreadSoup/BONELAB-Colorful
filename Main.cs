@@ -10,7 +10,6 @@ using BoneLib.BoneMenu;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using BoneLib;
-using SLZ.VRMK;
 using System.Security.Policy;
 using System.Collections.Generic;
 using Object = UnityEngine.Object;
@@ -59,7 +58,6 @@ namespace Colorful
         public static void MoggingTime()
         {
             var objectsWithKeyword = GameObject.FindObjectsOfType<GameObject>(true);
-            var textMeshProUGUIs = UnityEngine.Object.FindObjectsOfType<Il2CppTMPro.TextMeshProUGUI>(); 
             foreach (GameObject obj in objectsWithKeyword)
             {
                 if (obj.name.Contains("group_levelSelect"))

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Colorful;
+using Il2CppSLZ.Bonelab;
 using MelonLoader;
-
-
+using Page = BoneLib.BoneMenu.Page;
 
 
 namespace Colorful
