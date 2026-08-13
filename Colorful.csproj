@@ -75,6 +75,9 @@
       <HintPath>$(GameDir)\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Media\" />
+  </ItemGroup>
   <Target Name="CopyToGame" AfterTargets="PostBuildEvent">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)\Mods" />
   </Target>
