@@ -5,7 +5,6 @@ using Il2CppTMPro;
 using System.IO;
 using BoneLib.BoneMenu;
 using System;
-using BoneLib.BoneMenu;
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -22,7 +21,7 @@ namespace Colorful
         public const string Name = "Colorful";
         public const string Author = "Bread Soup";
         public const string Company = null;
-        public const string Version = "1.1.3";
+        public const string Version = "2.0.0";
         public const string DownloadLink = null;
     }
 

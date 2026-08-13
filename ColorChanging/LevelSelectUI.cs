@@ -13,7 +13,7 @@ namespace Colorful
         static Color color;
         public static void LevelSelect(Transform parent, bool isSecondChild)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.NorthEast;
             }

@@ -12,7 +12,7 @@ namespace Colorful
         static Color color;
         public static void SpawnGun(Transform parent, bool isFourthChild)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.West;
             }

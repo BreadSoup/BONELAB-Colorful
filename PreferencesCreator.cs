@@ -30,6 +30,9 @@ namespace Colorful
         public static MelonPreferences_Entry<Color> NorthWestPref { get; private set; }
         public static MelonPreferences_Entry<Color> MiddlePref { get; private set; }
         public static bool MelonPrefEnabledValue { get; private set; }
+        public static MelonPreferences_Entry<bool> MelonPrefSubmenuEnabled { get; private set; }
+        public static bool IsSubmenuEnabled { get; private set; }
+        
 
 
         public static void MelonPreferencesCreator()
@@ -46,6 +49,8 @@ namespace Colorful
             WestPref = MelonPrefCategory.CreateEntry<Color>("SpawnGun Menu Color", Colors.WestDefult, null, null, false);
             NorthWestPref = MelonPrefCategory.CreateEntry<Color>("Avatar Select Color", Colors.NorthWestDefult, null, null, false);
             MiddlePref = MelonPrefCategory.CreateEntry<Color>("Radial Cancel Color", Colors.MiddleDefult, null, null, false);
+            MelonPrefSubmenuEnabled = MelonPrefCategory.CreateEntry<bool>("Submenu Coloring", true, null, null, false, false, null, null);
+            IsSubmenuEnabled = MelonPrefSubmenuEnabled.Value;
         }
         public static void BonemenuCreator()
         {
@@ -266,6 +271,8 @@ namespace Colorful
                 Main.MoggingTime();
                 MelonPrefCategory.SaveToFile();
             });
+            
+            ColorfulMenuCreatorSubmenus(extra, null);
 
             var DefaultButton = extra.CreatePage("Reset To Defaults", Color.white);
             DefaultButton.CreateFunction("Default Eject", Colors.NorthDefult, delegate ()
@@ -478,6 +485,11 @@ namespace Colorful
                 Menu.DisplayDialog("Are you sure?", "This will override all colors you've set", Dialog.WarningIcon, () => applyCallback(currentColor)));
         }
 
+        public static void ColorfulMenuCreatorSubmenus(Page category, Action<Color> applyCallback)
+        {
+            category.CreateBool("Color Submenus", Color.white, IsSubmenuEnabled, new Action<bool>(OnSubmenuEnabled));
+        }
+
         public static void ColorfulMenuCreatorDefault(Page category, Action<Color> applyCallback)
         {
             category.CreateFunction("Default All", Color.black, () =>
@@ -492,6 +504,14 @@ namespace Colorful
             MelonPrefCategory.SaveToFile();
             Main.MoggingTime();
 
+        }
+
+        public static void OnSubmenuEnabled(bool value)
+        {
+            IsSubmenuEnabled = value;
+            MelonPrefSubmenuEnabled.Value = value;
+            MelonPrefCategory.SaveToFile();
+            Main.MoggingTime();
         }
     }
 }

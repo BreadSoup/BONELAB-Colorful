@@ -31,6 +31,7 @@ namespace Colorful
 
         //defults
         //I know I spelled default wrong but it doesnt matter
+        // this haunts me - Bread Soup 3 years later
         public static UnityEngine.Color NorthDefult = new UnityEngine.Color(0f, 1f, 1f, 1f); //eject
 
         public static UnityEngine.Color NorthEastDefult = new UnityEngine.Color(1f, 0.5f, 0f, 1f); //level

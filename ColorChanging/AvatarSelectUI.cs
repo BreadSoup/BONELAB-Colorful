@@ -12,7 +12,7 @@ namespace Colorful
         static Color color;
         public static void Avatar(Transform parent, bool isSecondChild)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.NorthWest;
             }
@@ -59,7 +59,7 @@ namespace Colorful
         }
         public static void Bodymall(Transform parent)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.NorthWest;
             }

@@ -15,7 +15,7 @@ namespace Colorful
 
         public static void Preferences(Transform parent, bool isSecondChild)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.East;
             }
@@ -60,7 +60,7 @@ namespace Colorful
                     continue;
                 }
 
-                if (PreferencesCreator.IsEnabled)
+                if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
                 {
                      color = Colors.East;
                 }
@@ -95,7 +95,7 @@ namespace Colorful
         }
         public static void Extra(Transform parent)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.East;
             }

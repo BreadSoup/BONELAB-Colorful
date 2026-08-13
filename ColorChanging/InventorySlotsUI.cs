@@ -11,7 +11,7 @@ namespace Colorful
 
         public static void Slots(Transform inventorySlots)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.South;
             }
@@ -28,7 +28,7 @@ namespace Colorful
 
         public static void AmmoHud(Transform hudAmmo)
         {
-            if (PreferencesCreator.IsEnabled)
+            if (PreferencesCreator.IsEnabled && PreferencesCreator.IsSubmenuEnabled)
             {
                 color = Colors.South;
             }
@@ -50,7 +50,7 @@ namespace Colorful
                 string name = sprite.gameObject.name;
                 if (name.StartsWith("img_ammo") || name == "sprite_outline")
                 {
-                    if (PreferencesCreator.IsEnabled)
+                    if (PreferencesCreator.IsEnabled  && PreferencesCreator.IsSubmenuEnabled)
                     {
                         sprite.color = Colors.South;
                     }
